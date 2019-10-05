@@ -1,0 +1,27 @@
+
+#! /bin/bash
+
+#PBS -l nodes=3:Intel14:ppn=3,mem=25gb
+#PBS -l walltime=120:00:00
+#PBS -S /bin/bash
+#PBS -o <path to a directory & file; SEE BELOW IF WORKING WITH SENSITIVE DATA>
+#PBS -e <path to a directory & file; SEE BELOW IF WORKING WITH SENSITIVE DATA>
+#PBS -d <add here the path to your mariadbSpider scripts>
+
+## If you are initializing a brand new database, run
+## ./mariadbSpider.sh init
+
+## If you are restarting an existing database, run
+## ./mariadbSpider.sh
+
+
+########################################################
+## IF WORKING WITH SENSITIVE DATA
+
+# If you are working with sensitive data, consult with the
+# the signee of the DUI/DMP regarding directories that can
+# be used by the project. Include the path to a directory
+# under the project directory where you wish your PBS output
+# and error files to be stored.
+
+
