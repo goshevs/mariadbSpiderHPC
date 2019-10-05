@@ -1,5 +1,4 @@
-# Scripts for running containerized instances of distributed 
-MariaDB on HPC infrastructure
+# Scripts for running containerized distributed MariaDB on HPC infrastructure
 
 ## Introduction
 
