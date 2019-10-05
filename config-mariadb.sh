@@ -10,7 +10,7 @@
  
 
 ## Select images and directories depending on instance type
-if [[ "$MDB_INSTANCE_TYPE" = "" ]]; then
+if [[ -z "$MDB_INSTANCE_TYPE" ]]; then
 	### Pick the correct container to run
 	export MDB_IMAGE=$MDB_IMAGE_FE
 	### Set the DB home directory
@@ -33,10 +33,10 @@ export SINGULARITYENV_MARIADB_PASSWORD=$MDB_USER_PASS
 export SINGULARITY_BIND="$MDB_ROOT_DIR/lib:/var/lib/mysql,$MDB_ROOT_DIR/run:/run/mysqld,$MDB_ROOT_DIR/log:/var/log/mysql,$MDB_ROOT_DIR/tmp:/tmp,$MDB_ROOT_DIR/tmp:/var/tmp,$MDB_CONF_DIR:/etc/mysql/conf.d"
 
 ## This is only relevant for frontend
-if [[ "$MDB_INSTANCE_TYPE" = "" ]]; then
+if [[ -z "$MDB_INSTANCE_TYPE" ]]; then
 
 	## Write out the front end db hostname
-	echo "$HOSTNAME" > $MDB_CONF_DIR/dbNode
+	echo "$HOSTNAME:$MDB_PORT" > $MDB_CONF_DIR/dbNode
 
 	## Write out the DB nodes 
 	nodes=($(cat $PBS_NODEFILE | uniq)) 
@@ -46,16 +46,17 @@ if [[ "$MDB_INSTANCE_TYPE" = "" ]]; then
 	done
 
         if [[ ! -z "$MDB_NODE_DIR_SHARED" ]]; then
-	  echo "$dbNodeName" > $MDB_NODE_DIR_SHARED/dbNode
+	  echo "$dbNodeName:$MDB_PORT" > $MDB_NODE_DIR_SHARED/dbNode
         fi
 
 	## Write out the pid
 	echo "$PBS_JOBID" > $MDB_CONF_DIR/jobid
 
 	## Create properties file for db-spark integration
-	echo "user root" > $MDB_SPARK_CREDENTIALS_FILE
-	echo "password $MDB_ROOT_PASS" >> $MDB_SPARK_CREDENTIALS_FILE
-	chmod 600 $MDB_SPARK_CREDENTIALS_FILE
-
+	if [[ ! -z "$MDB_SPARK_CREDENTIALS_FILE" ]]; then
+        	echo "user root" > $MDB_SPARK_CREDENTIALS_FILE
+        	echo "password $MDB_ROOT_PASS" >> $MDB_SPARK_CREDENTIALS_FILE
+        	chmod 600 $MDB_SPARK_CREDENTIALS_FILE
+	fi
 fi
 

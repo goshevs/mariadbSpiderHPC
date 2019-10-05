@@ -1,10 +1,12 @@
 # Scripts for running containerized distributed MariaDB on HPC infrastructure
 
+
 ## Introduction
 
 This repo offers a set of template scripts whose goal is to simplify
 running containerized instances of distributed MariaDB on HPC infrastructure 
 with PBS as a job scheduler. 
+
 
 ## How to use
 
@@ -38,18 +40,42 @@ instructions for working with sensitive data, if this applies to them.
 
 ### All other files
 
-All remaning files configure, start and stop the database instance. **Unless 
-users know what they are doing, they should not edit any of them.**
+All remaning files configure, start and stop the database instance. 
+
+**Unless users know what they are doing, they should not edit them.**
+
+
+## Mariadb credentials file
+
+Users must provide a database credentials file, `$MDB_CREDENTIALS_FILE`, in 
+`userInput.sh`. This file must include the root username(i.e. `root`) and password, 
+and a db user username and password. All four pieces of information have to be
+provided in this order, on seperate consecutive lines starting from the first line, 
+and flush against the left margin.
 
 
 ## Configuration directory
 
-We keep:
-`mariadb.cnf` TODO
-`mariadb.credentials` TODO 
-`spark.jdbc.credentials` TODO
+`$MDB_CONF_DIR` is mapped to `/etc/mysql/conf.d` in every mariadb container. This 
+enables users to configure the database servers by placing a `mariadb.cnf` 
+in the configuration directory.
 
-## Interaction with Apache Spark
 
-TODO
+## Integration with Apache Spark
+
+Users can integrate Apache Spark with a containerized distiributed MariaDB instance 
+using:
+
+1. The db instance root username and password located in 
+`$MDB_SPARK_CREDENTIALS_FILE`. 
+
+2. The name of the node and port on which the frontend database instance is 
+running which are located in file `dbNode` in `$MDB_CONF_DIR`.
+
+
+## Utility functions/modules
+
+TODO: These are scripts that enable the users to create distributed tables
+directly from `SparkR` and `pyspark`.
+
 

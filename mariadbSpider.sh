@@ -68,7 +68,7 @@ for b in $( seq 1 $last ); do
         ssh ${nodes[$b]} "$MDB_SCRIPTS_DIR/stop-mariadb.sh" &
 done
 
-echo "Shutting down the fronted"
+echo "Shutting down the frontend"
 source $MDB_SCRIPTS_DIR/stop-mariadb.sh
 
-echo "Destributed database torn down."
+echo "Distributed database torn down."
