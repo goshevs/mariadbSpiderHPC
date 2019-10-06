@@ -37,6 +37,9 @@ export MDB_CONF_DIR=
 ## DB port (option available to root only!)
 export MDB_PORT=3306
 
+## Time (in seconds) to wait for backend db instances to initialize 
+export MDB_INIT_WAITTIME=120
+
 ## OPTIONAL: File to post db node information (for multiple db users)
 export MDB_NODE_DIR_SHARED=
 

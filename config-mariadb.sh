@@ -18,6 +18,7 @@ if [[ -z "$MDB_INSTANCE_TYPE" ]]; then
 else 
 	export MDB_IMAGE=$MDB_IMAGE_BE
 	export MDB_ROOT_DIR=$MDB_ROOT_DIR/backend${MDB_INSTANCE_NUM}
+	echo "$MY_SINGULARITY_DB_INSTANCE_NAME" > /tmp/$USER-containerName
 fi
 
 ## Define the environment variables required by the MariaDB containers

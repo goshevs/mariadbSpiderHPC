@@ -12,8 +12,7 @@
 ## These arguments can only be used by root
 ## --net --network-args "portmap=$MDB_PORT:3306/tcp" \
 
-singularity instance start --cleanenv \ 
-                           $MDB_IMAGE $MY_SINGULARITY_DB_INSTANCE_NAME
+singularity instance start $MDB_IMAGE $MY_SINGULARITY_DB_INSTANCE_NAME
 
 singularity run instance://$MY_SINGULARITY_DB_INSTANCE_NAME &
 
