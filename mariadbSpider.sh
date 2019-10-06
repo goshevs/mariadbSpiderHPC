@@ -1,4 +1,4 @@
-\#! /bin/bash
+#! /bin/bash
 
 ###########################################################
 ### Configure and run the distributed mariadb db instance
