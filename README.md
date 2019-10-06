@@ -3,9 +3,9 @@
 
 ## Introduction
 
-This repo offers a set of template scripts whose goal is to simplify
-running containerized instances of distributed MariaDB on HPC infrastructure 
-with PBS as a job scheduler. 
+This repo offers a set of barebones scripts that simplify running 
+containerized instances of distributed MariaDB on HPC infrastructure 
+with a PBS job scheduler. 
 
 
 ## How to use
@@ -75,7 +75,7 @@ running which are located in file `dbNode` in `$MDB_CONF_DIR`.
 
 ## Utility functions/modules
 
-TODO: These are scripts that enable the users to create distributed tables
+TODO: These scripts will enable users to create distributed tables
 directly from `SparkR` and `pyspark`.
 
 
