@@ -20,6 +20,10 @@ module load singularity/3.1.0
 ## Configuration variables
 
 
+####### ==> Project directory
+export PROJECT_ROOT_DIR=
+
+
 ####### ==> Database scripts directory
 export MDB_SCRIPTS_DIR=
 
@@ -34,7 +38,7 @@ export MDB_ROOT_DIR=
 ## DB configuration directory
 export MDB_CONF_DIR=
 
-## DB port (option available to root only!)
+## DB port (keep as is; available to root only)
 export MDB_PORT=3306
 
 ## Time (in seconds) to wait for backend db instances to initialize 
@@ -62,7 +66,10 @@ export MDB_IMAGE_BE=
 export MY_SINGULARITY_DB_INSTANCE_NAME=
 
 
-####### ==> Spark integration 
+####### ==> Spark integration (OPTIONAL)
 
-## OPTIONAL: Credentials file for spark jdbc
-export MDB_SPARK_CREDENTIALS_FILE=
+## Root credentials file for spark jdbc
+export MDB_SPARK_ROOT_CREDENTIALS_FILE=
+
+## User credentials file for spark jdbc (if db users)
+export MDB_SPARK_USER_CREDENTIALS_FILE=

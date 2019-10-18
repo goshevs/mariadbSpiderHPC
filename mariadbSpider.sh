@@ -19,7 +19,7 @@ nnodes=${#nodes[@]}
 last=$(($nnodes -1))
 
 ## Load the user specifications 
-source ./userInput.sh
+source ./userConfiguration.sh
 
 echo "Starting backend db instances"
 ## Start the backend db instances
@@ -28,7 +28,7 @@ for b in $( seq 1 $last ); do
 	## Write out the backend command
 	bendCom="export MDB_INSTANCE_TYPE=backend"
 	bendCom="$bendCom ; export MDB_INSTANCE_NUM=$b"
-	bendCom="$bendCom ; source $MDB_SCRIPTS_DIR/userInput.sh"
+	bendCom="$bendCom ; source $MDB_SCRIPTS_DIR/userConfiguration.sh"
 	bendCom="$bendCom ; source \$MDB_SCRIPTS_DIR/config-mariadb.sh"
 	
 	if [[ "$initFlag" = "init" ]]; then
@@ -66,7 +66,7 @@ sleep $runTime
 echo "Shutting down the backend db instances"
 for b in $( seq 1 $last ); do
         ## Execute the commands	on the respective node
-        ssh ${nodes[$b]} "source $MDB_SCRIPTS_DIR/userInput.sh; $MDB_SCRIPTS_DIR/stop-mariadb.sh" &
+        ssh ${nodes[$b]} "source $MDB_SCRIPTS_DIR/userConfiguration.sh; $MDB_SCRIPTS_DIR/stop-mariadb.sh" &
 done
 
 echo "Shutting down the frontend"
