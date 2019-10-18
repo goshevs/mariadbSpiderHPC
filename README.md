@@ -88,7 +88,7 @@ from the first line, and flush against the left margin.
 ## Utility functions/modules
 
 Repo [sparkDBUtilities](https://github.com/goshevs/sparkDBUtilities)
-contains R utility functions for pushing Spark RDD's to MariaDb
+contains R utility functions for pushing Spark RDD's to MariaDB
 distributed tables. 
 
 TODO: similar python functionality.
