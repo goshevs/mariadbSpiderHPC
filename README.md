@@ -11,7 +11,7 @@ with a PBS job scheduler.
 ## How to use
 
 Download/clone the repo to a directory and edit the
-`userConfiguarion.template.sh` and `submit.template.pbs` files. Follow
+`userConfiguration.template.sh` and `submit.template.pbs` files. Follow
 the instructions in each file carefully. Save
 `userConfiguration.template.sh` as `userConfiguration.sh` and (if
 desired save `submit.template.pbs` as `submit.pbs`). Then submit the
