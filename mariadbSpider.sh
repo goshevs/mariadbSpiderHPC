@@ -17,7 +17,12 @@ while getopts ":dc" opt; do
 		;;
 		c ) conFlag=1
 		;;
-		\? ) echo "USAGE: mariadbSpider.sh [-d] [-c]"
+		\? ) echo
+		     echo "Runs a distributed containerized instance of MariaDB on HPC infrastructure"
+		     echo "USAGE: $(basename $0) [-d] [-c]"
+		     echo "    -d  initializes a brand new db (i.e. recreates an empty $MDB_ROOT_DIR)"
+		     echo "    -c  configures backend connections and backend user credentals"
+		     echo
 		     exit 1
 		;;
 		: ) echo "Invalid option $OPTARG"
@@ -25,7 +30,7 @@ while getopts ":dc" opt; do
 		;;
 	esac
 done
-shift $((OPTIND -1))
+shift $((OPTIND - 1))
 
 
 echo "Setting up environment and defaults"
