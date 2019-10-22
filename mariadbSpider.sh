@@ -21,7 +21,7 @@ while getopts ":dc" opt; do
 		     echo "Runs a distributed containerized instance of MariaDB on HPC infrastructure"
 		     echo "USAGE: $(basename $0) [-d] [-c]"
 		     echo "    -d  initializes a brand new db (i.e. recreates an empty $MDB_ROOT_DIR)"
-		     echo "    -c  configures backend connections and backend user credentals"
+		     echo "    -c  configures backend connections and backend user credentials"
 		     echo
 		     exit 1
 		;;
