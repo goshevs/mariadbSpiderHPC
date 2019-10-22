@@ -7,9 +7,26 @@
 ##
 ##
 ## Simo Goshev
-## Oct 05, 2019
+## Oct 22, 2019
 
-initFlag=$1
+
+## Collect arguments
+while getopts ":dc" opt; do
+	case ${opt} in
+		d ) initFlag=1
+		;;
+		c ) conFlag=1
+		;;
+		\? ) echo "USAGE: mariadbSpider.sh [-d] [-c]"
+		     exit 1
+		;;
+		: ) echo "Invalid option $OPTARG"
+		    exit 1	
+		;;
+	esac
+done
+shift $((OPTIND -1))
+
 
 echo "Setting up environment and defaults"
 
@@ -18,8 +35,14 @@ nodes=($(cat $PBS_NODEFILE | uniq))
 nnodes=${#nodes[@]}
 last=$(($nnodes -1))
 
-## Load the user specifications 
+## Load the user configuration 
 source ./userConfiguration.sh
+
+## Check credentials
+if [[ ! -f "$MDB_CREDENTIALS_FILE" ]]; then
+	echo "ERROR: Credentials file not provided."
+	exit 1
+fi
 
 echo "Starting backend db instances"
 ## Start the backend db instances
@@ -31,7 +54,7 @@ for b in $( seq 1 $last ); do
 	bendCom="$bendCom ; source $MDB_SCRIPTS_DIR/userConfiguration.sh"
 	bendCom="$bendCom ; source \$MDB_SCRIPTS_DIR/config-mariadb.sh"
 	
-	if [[ "$initFlag" = "init" ]]; then
+	if [[ ! -z  "$initFlag" ]]; then
 		bendCom="$bendCom; yes 2>/dev/null | $MDB_SCRIPTS_DIR/init-mariadb.sh"
 	fi
 
@@ -46,14 +69,21 @@ done
 source $MDB_SCRIPTS_DIR/config-mariadb.sh 
 
 ## Initialize the db if needed
-if [[ "$initFlag" = "init" ]]; then
+if [[ ! -z "$initFlag" ]]; then
 	yes 2>/dev/null | $MDB_SCRIPTS_DIR/init-mariadb.sh
 fi
 
 ## Start the frontend
-source $MDB_SCRIPTS_DIR/start-mariadb.sh
+source $MDB_SCRIPTS_DIR/start-mariadb.sh &
 
 echo "MariaDB cluster fired up. Frontend node is ${nodes[0]}"
+
+
+## Configure backend connections
+if [[ ! -z "$conFlag" ]]; then
+	source $MDB_SCRIPTS_DIR/config-connection.sh
+fi
+
 
 ## Retrieve the walltime of the job
 jobNumber=$(echo $PBS_JOBID | grep -Eo '[0-9]+')
@@ -63,13 +93,13 @@ runTime=$(expr $jobTimeRemaining - 300)
 ## Keep the job running for runTime seconds
 sleep $runTime
 
-echo "Shutting down the backend db instances"
+echo "Shutting down backend db instances"
 for b in $( seq 1 $last ); do
         ## Execute the commands	on the respective node
         ssh ${nodes[$b]} "source $MDB_SCRIPTS_DIR/userConfiguration.sh; $MDB_SCRIPTS_DIR/stop-mariadb.sh" &
 done
 
-echo "Shutting down the frontend"
+echo "Shutting down frontend"
 source $MDB_SCRIPTS_DIR/stop-mariadb.sh
 
 echo "Distributed database torn down."

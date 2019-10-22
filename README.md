@@ -68,19 +68,19 @@ file in the configuration directory.
 Users have the option to integrate Apache Spark with a containerized
 distiributed MariaDB instance using:
 
-1. The frontned db instance username and password provided in 
+1. The frontned db instance username and password written out to 
 `$MDB_SPARK_ROOT_CREDENTIALS_FILE` and/or `$MDB_SPARK_USER_CREDENTIALS_FILE`.
 
 2. The name of the node and port on which the frontend database instance is 
-running, provided in file `dbNode` in `$MDB_CONF_DIR`.
+running, written out to file `dbNode` in `$MDB_CONF_DIR`.
 
-3. The names of all db nodes, provided in file `dbNodes` in `$MDB_CONF_DIR`. 
+3. The names of all db nodes, written out to file `dbNodes` in `$MDB_CONF_DIR`. 
 
-4. The name of the database `MDB_DATABASE_NAME`, provided in file `dbName` in 
+4. The name of the database `MDB_DATABASE_NAME`, wirtten out to file `dbName` in 
  `$MDB_CONF_DIR`.
  
- In addition, users must create a backend credentials file in
-`$MDB_CONF_DIR` which must contain a username and password for
+ In addition, users must create a backend credentials file (if it does not exist 
+already) in `$MDB_CONF_DIR` which must contain a username and password for
 accessing the backend db instances. The two pieces of information have
 to be provided in this order, on seperate consecutive lines starting
 from the first line, and flush against the left margin.

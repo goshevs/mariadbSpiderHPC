@@ -6,7 +6,7 @@
 ##
 ##
 ## Simo Goshev
-## Oct 05, 2019
+## Oct 22, 2019
  
 
 #########################################################
@@ -44,14 +44,17 @@ export MDB_PORT=3306
 ## Time (in seconds) to wait for backend db instances to initialize 
 export MDB_INIT_WAITTIME=120
 
-## OPTIONAL: File to post db node information (for multiple db users)
+## OPTIONAL: Directory to post db node information (for multiple db users)
 export MDB_NODE_DIR_SHARED=
 
 ## Database name
 export MDB_DATABASE_NAME=
 
-## DB credentials file
+## DB credentials file (MUST EXIST ALREADY)
 export MDB_CREDENTIALS_FILE=
+
+## DB backend credentials file (MUST EXIST IF CONFIGURING CONNECTIONS)
+export MDB_BE_CREDENTIALS_FILE=
 
 
 ####### ==>  Singularity configuration

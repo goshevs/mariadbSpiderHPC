@@ -31,7 +31,7 @@ export SINGULARITYENV_MARIADB_ROOT_PASSWORD=$MDB_ROOT_PASS
 export SINGULARITYENV_MARIADB_DATABASE=$MDB_DATABASE_NAME
 export SINGULARITYENV_MARIADB_USER=$MDB_USER_NAME
 export SINGULARITYENV_MARIADB_PASSWORD=$MDB_USER_PASS
-export SINGULARITY_BIND="$MDB_ROOT_DIR/lib:/var/lib/mysql,$MDB_ROOT_DIR/run:/run/mysqld,$MDB_ROOT_DIR/log:/var/log/mysql,$MDB_ROOT_DIR/tmp:/tmp,$MDB_ROOT_DIR/tmp:/var/tmp,$MDB_CONF_DIR:/etc/mysql/conf.d"
+export SINGULARITY_BIND="$MDB_ROOT_DIR/lib:/var/lib/mysql,$MDB_ROOT_DIR/run:/run/mysqld,$MDB_ROOT_DIR/log:/var/log/mysql,$MDB_ROOT_DIR/tmp:/tmp,$MDB_ROOT_DIR/tmp:/var/tmp,$MDB_ROOT_DIR/log:/var/log,$MDB_CONF_DIR:/etc/mysql/conf.d"
 
 ## This is only relevant for frontend
 if [[ -z "$MDB_INSTANCE_TYPE" ]]; then
