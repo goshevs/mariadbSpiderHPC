@@ -17,7 +17,7 @@ the instructions in each file carefully. Save
 desired save `submit.template.pbs` as `submit.pbs`). Then submit the
 PBS script to the job scheduler on the cluster.
 
-Please note that in the case of working with sensitive data, users **MUST** ensure 
+Please note that in the case of working with sensitive data, users **must** ensure 
 that all writes to disk by the database instance are directed to a directory 
 permissible under the DUA/DMP. If users are unsure what directories they can 
 write to, they should contact the signee of the DUA/DMP.
@@ -30,14 +30,14 @@ The scripts in this repo and their descriptions follow below.
 ### `userConfiguration.template.sh`
 
 `userConfiguration.template.sh` defines a set of environment variables needed for configuring
-the distributed database. This files **MUST** be customized and saved by the users as 
-`userConfiguration.sh`. If working with sensitive data, users **MUST** ensure that all 
+the distributed database. This files **must** be customized and saved by the users as 
+`userConfiguration.sh`. If working with sensitive data, users **must** ensure that all 
 files written out by the database instance are stored in a permissible directory. 
 
 ### `submit.template.pbs`
 
-This is the PBS submission script template. Users **MUST** customize it following
-the instructions provided in it. Users **MUST** pay specific attention to the 
+This is the PBS submission script template. Users **must** customize it following
+the instructions provided in it. Users **must** pay specific attention to the 
 instructions for working with sensitive data, if this applies to them.
 
 ### All other files
@@ -47,7 +47,7 @@ All remaning files configure, start and stop the database instance.
 **Unless users know what they are doing, they should not edit them.**
 
 
-## Mariadb credentials files
+## MariaDB credentials files
 
 Users must provide a frontend credentials file, `$MDB_CREDENTIALS_FILE`, in 
 `userConfiguration.sh`. This file must include the root username (i.e. `root`) and password, 
@@ -76,7 +76,7 @@ running, written out to file `dbNode` in `$MDB_CONF_DIR`.
 
 3. The names of all db nodes, written out to file `dbNodes` in `$MDB_CONF_DIR`. 
 
-4. The name of the database `MDB_DATABASE_NAME`, wirtten out to file `dbName` in 
+4. The name of the database `$MDB_DATABASE_NAME`, wirtten out to file `dbName` in 
  `$MDB_CONF_DIR`.
  
  In addition, users must create a backend credentials file (if it does not exist 
