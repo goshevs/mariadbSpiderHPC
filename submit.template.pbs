@@ -3,9 +3,8 @@
 #PBS -l nodes=3:Intel14:ppn=3,mem=25gb
 #PBS -l walltime=120:00:00
 #PBS -S /bin/bash
-#PBS -o <path to a directory & file; SEE BELOW IF WORKING WITH SENSITIVE DATA>
-#PBS -e <path to a directory & file; SEE BELOW IF WORKING WITH SENSITIVE DATA>
-#PBS -d <add here the path to your mariadbSpider scripts>
+#PBS -j oe -o </path/to/file; SEE BELOW IF WORKING WITH SENSITIVE DATA>
+#PBS -d </path/to/mariadbSpider/scripts>
 
 ## Initialize a brand new db
 ## ==>>  Without backend connections
