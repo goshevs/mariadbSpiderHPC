@@ -85,8 +85,6 @@ accessing the backend db instances. The two pieces of information have
 to be provided in this order, on seperate consecutive lines starting
 from the first line, and flush against the left margin.
 
-## Python and R utilities
-
 Repo [sparkDBUtilities](https://github.com/goshevs/sparkDBUtilities)
 contains Python and R utilities for pushing Spark RDD's to MariaDB
 distributed tables. The need for such utilities arises from the fact that
