@@ -79,18 +79,18 @@ running, written out to file `dbNode` in `$MDB_CONF_DIR`.
 4. The name of the database `$MDB_DATABASE_NAME`, wirtten out to file `dbName` in 
  `$MDB_CONF_DIR`.
  
- In addition, users must create a backend credentials file (if it does not exist 
+In addition, users must create a backend credentials file (if it does not exist 
 already) in `$MDB_CONF_DIR` which must contain a username and password for
 accessing the backend db instances. The two pieces of information have
 to be provided in this order, on seperate consecutive lines starting
 from the first line, and flush against the left margin.
 
-## Utility functions/modules
+## Python and R utilities
 
 Repo [sparkDBUtilities](https://github.com/goshevs/sparkDBUtilities)
-contains R utility functions for pushing Spark RDD's to MariaDB
-distributed tables. 
-
-TODO: similar python functionality.
+contains Python and R utilities for pushing Spark RDD's to MariaDB
+distributed tables. The need for such utilities arises from the fact that
+table schemas do not propagate automatically from the frontend db instance 
+to the backend db instances. 
 
 
