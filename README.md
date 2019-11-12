@@ -42,7 +42,7 @@ instructions for working with sensitive data, if this applies to them.
 
 ### All other files
 
-All remaning files configure, start and stop the database instance. 
+All remaining files configure, start and stop the database instance. 
 
 **Unless users know what they are doing, they should not edit them.**
 
@@ -52,7 +52,7 @@ All remaning files configure, start and stop the database instance.
 Users must provide a frontend credentials file, `$MDB_CREDENTIALS_FILE`, in 
 `userConfiguration.sh`. This file must include the root username (i.e. `root`) and password, 
 and a db user username and password. All four pieces of information have to be
-provided in this order, on seperate consecutive lines starting from the first line, 
+provided in this order, on separate consecutive lines starting from the first line, 
 and flush against the left margin.
 
 
@@ -66,7 +66,7 @@ file in the configuration directory.
 ## Integration with Apache Spark
 
 Users have the option to integrate Apache Spark with a containerized
-distiributed MariaDB instance using:
+distributed MariaDB instance using:
 
 1. The frontned db instance username and password written out to 
 `$MDB_SPARK_ROOT_CREDENTIALS_FILE` and/or `$MDB_SPARK_USER_CREDENTIALS_FILE`.
@@ -76,13 +76,13 @@ running, written out to file `dbNode` in `$MDB_CONF_DIR`.
 
 3. The names of all db nodes, written out to file `dbNodes` in `$MDB_CONF_DIR`. 
 
-4. The name of the database `$MDB_DATABASE_NAME`, wirtten out to file `dbName` in 
+4. The name of the database `$MDB_DATABASE_NAME`, written out to file `dbName` in 
  `$MDB_CONF_DIR`.
  
 In addition, users must create a backend credentials file (if it does not exist 
 already) in `$MDB_CONF_DIR` which must contain a username and password for
 accessing the backend db instances. The two pieces of information have
-to be provided in this order, on seperate consecutive lines starting
+to be provided in this order, on separate consecutive lines starting
 from the first line, and flush against the left margin.
 
 Repo [sparkDBUtilities](https://github.com/goshevs/sparkDBUtilities)
